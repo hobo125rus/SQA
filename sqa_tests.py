@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.remote.errorhandler import NoAlertPresentException
 from traitlets import Bool
-from constants import TestCaseConstants
+from const.constants import TestCaseConstants
 
 def init_web_page():
     """
