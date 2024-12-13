@@ -1,0 +1,11 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.5, pytest-7.4.0, pluggy-1.0.0 -- /Users/user/anaconda3/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/user/Desktop/SQA
+plugins: anyio-3.5.0
+collecting ... collected 2 items
+
+sqa_tests.py::test_exception_tc012 SKIPPED (unconditional skip)          [ 50%]
+sqa_tests.py::test_exception_tc017 PASSED                                [100%]
+
+======================== 1 passed, 1 skipped in 16.37s =========================
