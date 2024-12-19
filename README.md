@@ -16,7 +16,6 @@ pytest 7.4
 
 selenium 4.27.1
 
-
 You need to install Safari web-driver.
 
 ## Install project
