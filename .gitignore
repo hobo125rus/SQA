@@ -12,3 +12,4 @@ framework/pageobject/test_feedback.py
 framework/pageobject/__pycache__/InputField.cpython-311.pyc
 test/__pycache__/TestFeedback.cpython-311-pytest-7.4.0.pyc
 test/test_feedback.py
+framework/pageobject/conftest.py
