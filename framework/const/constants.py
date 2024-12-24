@@ -1,3 +1,4 @@
+from selenium.webdriver.common.by import By
 class TestCaseConstants(object):
     """
     Constants used in testing, as well as the testing URL.

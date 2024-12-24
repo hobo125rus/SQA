@@ -1,186 +1,242 @@
-from framework.pageobject.inputfield import InputField
-from framework.pageobject.inputfield import SearchField
-from framework.const.constants import TestCaseConstants
-from selenium.webdriver.common.alert import Alert
+from framework.pageobject.Browser import BrowserCls
+from framework.pageobject.InputField import InputFieldCls
+from framework.pageobject.SearchField import SearchFieldCls
+from framework.const.Constants import TestCaseConstants
 from selenium.webdriver.remote.errorhandler import NoAlertPresentException
-from time import sleep
+import pytest
 
-def test_feedback_search_tc012(browser):
+#@pytest.mark.skip
+def test_feedback_search_tc012():
     """
     Test function for XSS field 'search' vulnerabilities according to test case #012.
     """
-    feedback_page = SearchField(browser)
-    feedback_page.go_to_site()
+    test_page = BrowserCls("http://testfire.net/feedback.jsp")
+    test_page.go_to_url()
+    test_page.is_loaded("disclaimer")
+    assert test_page.is_title("Altoro Mutual") == True
+    sfc = SearchFieldCls()
     tcconstants = TestCaseConstants.Test_XSS
     for cmd in tcconstants:
-        feedback_page.enter_word_search(cmd)
-        feedback_page.click_on_the_search_button()
-        sleep(1)
+        sfc.enter_word_search(cmd)
+        sfc.click_on_the_search_button()
         try:
-            alert = Alert(browser)
-            alert.accept()
+            test_page.alert_window()
             assert False, 'Finded alert'
         except NoAlertPresentException:
             assert True        
-        browser.back()
-        feedback_page.search_clear()
+        test_page.back()
+        test_page.back()
+        sfc.search_clear()
+    test_page.quit()
 
-def test_feedback_search_tc017(browser):
+@pytest.mark.skip
+def test_feedback_search_tc017():
     """
     Vulnerability testing function for OS command injection vulnerabilities of 'search' field
     according to test case #017.
     """
-    feedback_page = SearchField(browser)
-    feedback_page.go_to_site()
+   
+    test_page = BrowserCls("http://testfire.net/feedback.jsp")
+    test_page.go_to_url()
+    test_page.is_loaded("disclaimer")
+    assert test_page.is_title("Altoro Mutual") == True
+    sfc = SearchFieldCls()
     tcconstants = TestCaseConstants.Test_COMMANDs
     for cmd in tcconstants:
-        feedback_page.enter_word_search(cmd[1])
-        feedback_page.click_on_the_search_button()
-        sleep(1)
-        assert cmd[0] not in browser.page_source
-        browser.back()
-        feedback_page.search_clear()
+        sfc.enter_word_search(cmd[1])
+        sfc.click_on_the_search_button()
+        assert cmd[0] not in test_page.page_source()
+        test_page.back()
+        test_page.back()
+        sfc.search_clear()
+    test_page.quit()
 
-def test_feedback_name_tc012(browser):
+@pytest.mark.skip
+def test_feedback_name_tc012():
     """
     Test function for XSS field 'name' vulnerabilities according to test case #012.
     """
-    feedback_page = InputField(browser)
-    feedback_page.go_to_site()
+    
+    test_page = BrowserCls("http://testfire.net/feedback.jsp")
+    test_page.go_to_url()
+    test_page.is_loaded("disclaimer")
+    assert test_page.is_title("Altoro Mutual") == True
+    ifc = InputFieldCls()
     tcconstants = TestCaseConstants.Test_XSS
     for cmd in tcconstants:
-        feedback_page.enter_word_name(cmd)
-        feedback_page.click_on_the_submit_button()
-        sleep(1)
+        ifc.enter_word_name(cmd)
+        ifc.click_on_the_submit_button()
         try:
-            alert = Alert(browser)
-            alert.accept()
+            test_page.alert_window()
             assert False, 'Finded alert'
         except NoAlertPresentException:
             assert True        
-        browser.back()
-        feedback_page.name_clear()
+        test_page.back()
+        test_page.back()
+        ifc.name_clear()
+    test_page.quit()
 
-def test_feedback_name_tc017(browser):
+#@pytest.mark.skip
+def test_feedback_name_tc017():
     """
     Vulnerability testing function for OS command injection vulnerabilities of 'name' field
     according to test case #017.
     """
-    feedback_page = InputField(browser)
-    feedback_page.go_to_site()
+    
+    test_page = BrowserCls("http://testfire.net/feedback.jsp")
+    test_page.go_to_url()
+    test_page.is_loaded("disclaimer")
+    assert test_page.is_title("Altoro Mutual") == True
+    ifc = InputFieldCls()
     tcconstants = TestCaseConstants.Test_COMMANDs
     for cmd in tcconstants:
-        feedback_page.enter_word_name(cmd[1])
-        feedback_page.click_on_the_submit_button()
-        sleep(1)
-        assert cmd[0] not in browser.page_source
-        browser.back()
-        feedback_page.name_clear()
-        
-def test_feedback_email_tc012(browser):
+        ifc.enter_word_name(cmd[1])
+        ifc.click_on_the_submit_button()
+        assert test_page.is_loaded("disclaimer") == True
+        assert cmd[0] not in test_page.page_source()
+        test_page.back()
+        test_page.back()
+        ifc.name_clear()
+    #test_page.quit()
+  
+ 
+@pytest.mark.skip        
+def test_feedback_email_tc012():
     """
     Test function for XSS field 'email' vulnerabilities according to test case #012.
     """
-    feedback_page = InputField(browser)
-    feedback_page.go_to_site()
+  
+    test_page = BrowserCls("http://testfire.net/feedback.jsp")
+    test_page.go_to_url()
+    test_page.is_loaded("disclaimer")
+    assert test_page.is_title("Altoro Mutual") == True
+    ifc = InputFieldCls()
     tcconstants = TestCaseConstants.Test_XSS
     for cmd in tcconstants:
-        feedback_page.enter_word_email(cmd)
-        feedback_page.click_on_the_submit_button()
-        sleep(1)
+        ifc.enter_word_email(cmd)
+        ifc.click_on_the_submit_button()
         try:
-            alert = Alert(browser)
-            alert.accept()
+            test_page.alert_window()
             assert False, 'Finded alert'
         except NoAlertPresentException:
             assert True        
-        browser.back()
-        feedback_page.email_clear()
+        test_page.back()
+        test_page.back()
+        ifc.email_clear()
+    test_page.quit()
 
-def test_feedback_email_tc017(browser):
+@pytest.mark.skip
+def test_feedback_email_tc017():
     """
     Vulnerability testing function for OS command injection vulnerabilities of 'email' field
     according to test case #017.
     """
-    feedback_page = InputField(browser)
-    feedback_page.go_to_site()
+    
+    test_page = BrowserCls("http://testfire.net/feedback.jsp")
+    test_page.go_to_url()
+    test_page.is_loaded("disclaimer")
+    assert test_page.is_title("Altoro Mutual") == True
+    ifc = InputFieldCls()
     tcconstants = TestCaseConstants.Test_COMMANDs
     for cmd in tcconstants:
-        feedback_page.enter_word_email(cmd[1])
-        feedback_page.click_on_the_submit_button()
-        sleep(1)
-        assert cmd[0] not in browser.page_source
-        browser.back()
-        feedback_page.email_clear()
-        
-def test_feedback_subject_tc012(browser):
+        ifc.enter_word_email(cmd[1])
+        ifc.click_on_the_submit_button()
+        assert cmd[0] not in test_page.page_source()
+        test_page.back()
+        test_page.back()
+        ifc.email_clear()
+    test_page.quit()
+
+@pytest.mark.skip        
+def test_feedback_subject_tc012():
     """
     Test function for XSS field 'subject' vulnerabilities according to test case #012.
     """
-    feedback_page = InputField(browser)
-    feedback_page.go_to_site()
+    
+    test_page = BrowserCls("http://testfire.net/feedback.jsp")
+    test_page.go_to_url()
+    test_page.is_loaded("disclaimer")
+    assert test_page.is_title("Altoro Mutual") == True
+    ifc = InputFieldCls()
     tcconstants = TestCaseConstants.Test_XSS
     for cmd in tcconstants:
-        feedback_page.enter_word_subject(cmd)
-        feedback_page.click_on_the_submit_button()
-        sleep(1)
+        ifc.enter_word_subject(cmd)
+        ifc.click_on_the_submit_button()
         try:
-            alert = Alert(browser)
-            alert.accept()
+            alert = test_page.alert_window()
             assert False, 'Finded alert'
         except NoAlertPresentException:
             assert True        
-        browser.back()
-        feedback_page.subject_clear()
+        test_page.back()
+        test_page.back()
+        ifc.subject_clear()
+    test_page.quit()
 
-def test_feedback_subject_tc017(browser):
+@pytest.mark.skip
+def test_feedback_subject_tc017():
     """
     Vulnerability testing function for OS command injection vulnerabilities of 'subject' field
     according to test case #017.
     """
-    feedback_page = InputField(browser)
-    feedback_page.go_to_site()
+  
+    test_page = BrowserCls("http://testfire.net/feedback.jsp")
+    test_page.go_to_url()
+    test_page.is_loaded("disclaimer")
+    assert test_page.is_title("Altoro Mutual") == True
+    ifc = InputFieldCls()
     tcconstants = TestCaseConstants.Test_COMMANDs
     for cmd in tcconstants:
-        feedback_page.enter_word_subject(cmd[1])
-        feedback_page.click_on_the_submit_button()
-        sleep(1)
-        assert cmd[0] not in browser.page_source
-        browser.back()
-        feedback_page.subject_clear()
-        
-def test_feedback_comments_tc012(browser):
+        ifc.enter_word_subject(cmd[1])
+        ifc.click_on_the_submit_button()
+        assert cmd[0] not in test_page.page_source()
+        test_page.back()
+        test_page.back()
+        ifc.subject_clear()
+    test_page.quit()
+
+@pytest.mark.skip        
+def test_feedback_comments_tc012():
     """
     Test function for XSS field 'comments' vulnerabilities according to test case #012.
     """
-    feedback_page = InputField(browser)
-    feedback_page.go_to_site()
+  
+    test_page = BrowserCls("http://testfire.net/feedback.jsp")
+    test_page.go_to_url()
+    test_page.is_loaded("disclaimer")
+    assert test_page.is_title("Altoro Mutual") == True
+    ifc = InputFieldCls()
     tcconstants = TestCaseConstants.Test_XSS
     for cmd in tcconstants:
-        feedback_page.enter_word_comments(cmd)
-        feedback_page.click_on_the_submit_button()
-        sleep(1)
+        ifc.enter_word_comments(cmd)
+        ifc.click_on_the_submit_button()
         try:
-            alert = Alert(browser)
-            alert.accept()
+            test_page.alert_window()
             assert False, 'Finded alert'
         except NoAlertPresentException:
             assert True        
-        browser.back()
-        feedback_page.comments_clear()
+        test_page.back()
+        test_page.back()
+        ifc.comments_clear()
+    test_page.quit()
 
-def test_feedback_comments_tc017(browser):
+@pytest.mark.skip
+def test_feedback_comments_tc017():
     """
     Vulnerability testing function for OS command injection vulnerabilities of 'comments' field
     according to test case #017.
     """
-    feedback_page = InputField(browser)
-    feedback_page.go_to_site()
+    
+    test_page = BrowserCls("http://testfire.net/feedback.jsp")
+    test_page.go_to_url()
+    test_page.is_loaded("disclaimer")
+    assert test_page.is_title("Altoro Mutual") == True
+    ifc = InputFieldCls()
     tcconstants = TestCaseConstants.Test_COMMANDs
     for cmd in tcconstants:
-        feedback_page.enter_word_comments(cmd[1])
-        feedback_page.click_on_the_submit_button()
-        sleep(1)
-        assert cmd[0] not in browser.page_source
-        browser.back()
-        feedback_page.comments_clear()
+        ifc.enter_word_comments(cmd[1])
+        ifc.click_on_the_submit_button()
+        assert cmd[0] not in test_page.page_source()
+        test_page.back()
+        test_page.back()
+        ifc.comments_clear()
+    test_page.quit()

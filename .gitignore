@@ -1,3 +1,13 @@
 /.pytest_cache
 /__pycache__
 /Тест-кейсы_SQA.numbers
+framework/pageobject/__pycache__/BasePage.cpython-311.pyc
+framework/pageobject/__pycache__/Browser.cpython-311.pyc
+framework/pageobject/__pycache__/FeedbackPage.cpython-311.pyc
+framework/pageobject/__pycache__/Singleton.cpython-311.pyc
+framework/pageobject/__pycache__/SearchField.cpython-311.pyc
+test/test.py
+framework/const/__pycache__/Constants.cpython-311.pyc
+framework/pageobject/test_feedback.py
+framework/pageobject/__pycache__/InputField.cpython-311.pyc
+test/__pycache__/TestFeedback.cpython-311-pytest-7.4.0.pyc

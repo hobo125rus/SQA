@@ -1,39 +1,60 @@
+import abc
+import logging
+from framework.pageobject.Browser import BrowserCls
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from const.constants import TestCaseConstants
 
-class BasePage:
-    """
-    The BasePage class defines the basic methods for working with WebDriver.
-    """
-    def __init__(self, driver):
-        """
-        Creating a constructor that accepts a webdriver driver instance. 
-        Specify the base_url that will be used to open the page.
-        """
-        self.driver = driver
-        self.base_url = TestCaseConstants.Test_URL
+logging.basicConfig(format='%(asctime)s - INFO - %(message)s', level=logging.INFO)
 
-    def find_element(self, locator,time=10):
+class BasePageCls(abc.ABC):
+    """
+    The BasePage class defines the basic methods for working with web page.
+    
+    Methods:
+    -----------
+        find_element:
+            Search for an item on a page using a known locator.
+        click: 
+            The function of clicking on an element.
+        clear: 
+            The function of clearing on an element.
+        send_keys: 
+            The function of send keys to an element.
+    """
+    
+    def __init__(self, locator):
         """
-        Creating a find_element method that searches for one element and returns it.
-        
+        Creating a constructor that accepts a locator. 
+        And initiates an instance of the WebDriver from Browser Class.
+        """
+        logging.info(f'Initiating BasePage class')
+        self.driver = BrowserCls().get_driver()
+        self.locator = locator        
+    
+    def find_element(self,time=10):
+        """
+        Creating a method that searches for one element by locator and returns it.
+    
         Returns:
         -----------
         WebElement: object
-            Pointer to webelement.
+            Pointer to web element.
         """
-        return WebDriverWait(self.driver,time).until(EC.presence_of_element_located(locator),
-                                                      message=f"Can't find element by locator {locator}")
-
-    def go_to_site(self):
-        """
-        The method calls the get function from WebDriver. 
-        The method allows to go to the specified page.
+        logging.info(f'Executing a find_element({self.locator}) method of the BasePage class')
+        return WebDriverWait(self.driver,time).until(EC.presence_of_element_located(self.locator),
+                                                    message=f"Can't find element by locator {self.locator}")
         
-        Returns:
-        -----------
-        driver: object
-            Pointer to webdriver.
-        """
-        return self.driver.get(self.base_url)
+    def click(self):
+        # Method for clicking element.
+        logging.info(f'Executing a click() method of the BasePage class')
+        self.find_element().click()
+    
+    def clear(self):
+        # Method for clearing element.
+        logging.info(f'Executing a clear() method of the BasePage class')
+        self.find_element().clear()
+    
+    def send_keys(self, text):
+        # Method for printing text to element.
+        logging.info(f'Executing a send_keys() method of the BasePage class')
+        self.find_element().send_keys(text)
