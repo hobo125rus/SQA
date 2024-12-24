@@ -10,6 +10,13 @@ The project implemented two information security test cases for checking input f
 * The function with index #017 in TestFeedback.py - testing the search input and feedback form for OS command injection.
   Ex: test_feedback_<field_name>_tc017
 
+## The main classes presented in the framework are:
+
+- BrowserCls: This class describes the basic methods of working with WebDriver.
+- BasePageCls: This class describes the basic methods of working with web page.
+- InputFieldCls: This class describes the basic methods of working with the elements responsible for the feedback area.
+- SearchFieldCls: This class describes the basic methods of working with the elements responsible for the search area.
+
 ## Requirements
 
 - python 3.11
