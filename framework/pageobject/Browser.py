@@ -3,6 +3,7 @@ from framework.pageobject.Singleton import MetaSingleton
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.wait import TimeoutException
+from selenium.webdriver.remote.errorhandler import NoAlertPresentException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.alert import Alert
@@ -99,7 +100,5 @@ class BrowserCls(metaclass=MetaSingleton):
             alert = Alert(self.driver)
             logging.info("Alert is finded")
             alert.accept()
-        except TimeoutException:
-            logging.info("Alert is missing")
-            raise TimeoutException
-        
+        except NoAlertPresentException:
+            logging.info("Alert is missing")        
