@@ -24,12 +24,12 @@ class BrowserCls(metaclass=MetaSingleton):
             The method of going to the page passed to the class as an argument.
         is_loaded:
             The method of checking page element loading.
-        is_title:
-            Method for checking if the specified value is in the page header.
         page_source:
             The method of displaying the page content.
         quit:
             The method of exiting the WebDriver interface.
+        alert_window:
+            The method implements the function of checking exist alert window.
     """
         
     def __init__(self, url):
@@ -70,14 +70,6 @@ class BrowserCls(metaclass=MetaSingleton):
         except TimeoutException:
             logging.info(f'Timed out waiting for page to load')
             return False
-    
-    def is_title(self, title):
-        """
-        The method implements the function of checking the page title. 
-        Returns a boolean value if there is a title.
-        """
-        logging.info(f'Executing a is_title() method of the Browser class')
-        return title in self.driver.title
     
     def page_source(self):
         # The method returns the contents of the page.
