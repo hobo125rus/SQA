@@ -1,0 +1,51 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.5, pytest-7.4.0, pluggy-1.0.0
+rootdir: /Users/user/Desktop/SQA
+plugins: anyio-3.5.0, xdist-3.6.1
+collected 10 items
+
+test/TestFeedback.py F.F.......                                          [100%]
+
+=================================== FAILURES ===================================
+__________________________ test_feedback_search_tc012 __________________________
+
+    def test_feedback_search_tc012():
+        test_page = BrowserCls("https://testfire.net/feedback.jsp")
+        test_page.go_to_url()
+        test_page.is_loaded("disclaimer")
+        feedback_page = FeedbackPageCls()
+        assert feedback_page.is_title("Altoro Mutual") == True
+        feedback_page.input_search_text(TestCaseConstants.Test_XSS)
+        feedback_page.click_on_the_search_button()
+        try:
+            test_page.alert_window()
+>           assert False, 'Finded alert'
+E           AssertionError: Finded alert
+E           assert False
+
+test/TestFeedback.py:20: AssertionError
+___________________________ test_feedback_name_tc012 ___________________________
+
+    def test_feedback_name_tc012():
+        """
+        Test function for XSS field 'name' vulnerabilities according to test case #012.
+        """
+    
+        test_page = BrowserCls("https://testfire.net/feedback.jsp")
+        test_page.go_to_url()
+        test_page.is_loaded("disclaimer")
+        feedback_page = FeedbackPageCls()
+        assert feedback_page.is_title("Altoro Mutual") == True
+        feedback_page.input_name_text(TestCaseConstants.Test_XSS)
+        feedback_page.click_on_the_submit_button()
+        try:
+            test_page.alert_window()
+>           assert False, 'Finded alert'
+E           AssertionError: Finded alert
+E           assert False
+
+test/TestFeedback.py:110: AssertionError
+=========================== short test summary info ============================
+FAILED test/TestFeedback.py::test_feedback_search_tc012 - AssertionError: Fin...
+FAILED test/TestFeedback.py::test_feedback_name_tc012 - AssertionError: Finde...
+========================= 2 failed, 8 passed in 35.09s =========================
