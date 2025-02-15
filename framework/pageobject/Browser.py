@@ -1,6 +1,6 @@
 import logging
 from framework.pageobject.Singleton import MetaSingleton
-from selenium import webdriver
+from framework.pageobject.BrowserFactory import BrowserFactory
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.wait import TimeoutException
 from selenium.webdriver.remote.errorhandler import NoAlertPresentException
@@ -32,12 +32,12 @@ class BrowserCls(metaclass=MetaSingleton):
             The method implements the function of checking exist alert window.
     """
         
-    def __init__(self, url):
+    def __init__(self, url, browser_type):
         """
         Creating a constructor that initiates an instance of the WebDriver.
         Specify the url that will be used to open the page.
         """
-        self.driver = webdriver.Safari()
+        self.driver = BrowserFactory.set_browser_type(browser_type)
         self.url = url
         logging.info(f'Initiating Browser class')    
 

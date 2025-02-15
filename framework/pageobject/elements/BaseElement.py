@@ -9,9 +9,7 @@ class BaseElementCls(abc.ABC):
     The BaseElement class defines the basic methods for working with web page.
     
     Methods:
-    -----------
-        __iter__:
-            An abstract method for demonstrating the operation of the abc module.        
+    -----------        
         find_element:
             Search for an item on a page using a known locator.
     """
@@ -23,12 +21,7 @@ class BaseElementCls(abc.ABC):
         """
         logging.info(f'Initiating BasePage class')
         self.driver = BrowserCls().get_driver()
-        logging.basicConfig(format='%(asctime)s - INFO - %(message)s', level=logging.INFO)
-    
-    # @abc.abstractmethod
-    # def __iter__(self):
-    #     while False:
-    #         yield None    
+        logging.basicConfig(format='%(asctime)s - INFO - %(message)s', level=logging.INFO) 
     
     def find_element(self, locator, time=10):
         """
