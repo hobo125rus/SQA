@@ -3,14 +3,12 @@ from framework.pageobject.elements.BaseElement import BaseElementCls
 
 class InputCls(BaseElementCls):
     """
-    The Input class defines the basic methods for working with button on web page.
+    The Input class defines the basic methods for working with input fields on web page.
     
     Methods:
     -----------      
         clear: 
             The function of clearing on an element.
-        click: 
-            The function of clicking on an element.
         send_keys: 
             The function of send keys to an element.
         input_textbox:
@@ -21,11 +19,6 @@ class InputCls(BaseElementCls):
         # Method for clearing element.
         logging.info(f'Executing a clear() method of the Input class')
         self.find_element(locator).clear()
-    
-    def click(self, locator):
-        # Method for clicking element.
-        logging.info(f'Executing a click() method of the Button class')
-        self.find_element(locator).click()
     
     def send_keys(self, text, locator):
         # Method for printing text to element.

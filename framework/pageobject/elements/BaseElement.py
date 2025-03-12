@@ -10,6 +10,8 @@ class BaseElementCls(abc.ABC):
     
     Methods:
     -----------        
+        click: 
+            The function of clicking on an element.
         find_element:
             Search for an item on a page using a known locator.
     """
@@ -22,6 +24,11 @@ class BaseElementCls(abc.ABC):
         logging.info(f'Initiating BasePage class')
         self.driver = BrowserCls().get_driver()
         logging.basicConfig(format='%(asctime)s - INFO - %(message)s', level=logging.INFO) 
+    
+    def click(self, locator):
+        # Method for clicking element.
+        logging.info(f'Executing a click() method of the BasePage class')
+        self.find_element(locator).click()
     
     def find_element(self, locator, time=10):
         """

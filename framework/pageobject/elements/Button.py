@@ -7,11 +7,6 @@ class ButtonCls(BaseElementCls):
     
     Methods:
     -----------
-        click: 
-            The function of clicking on an element.
+        
     """
     
-    def click(self, locator):
-        # Method for clicking element.
-        logging.info(f'Executing a click() method of the Button class')
-        self.find_element(locator).click()
