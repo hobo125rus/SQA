@@ -2,7 +2,29 @@ import logging
 from framework.pageobject.BasePage import BasePageCls
 from framework.pageobject.elements.Button import ButtonCls
 from framework.pageobject.elements.Input import InputCls
-from framework.const.Constants import TestCaseConstants
+from selenium.webdriver.common.by import By
+
+"""
+    Creating the FeedbackLocators class. It is used only for storing locators.
+    The class describes the locators:
+    LOCATOR_INPUT_TEXT_FIELD_NAME: Locator for searching the 'name' field. 
+    LOCATOR_INPUT_TEXT_FIELD_EMAIL: Locator for searching the 'email' field.
+    LOCATOR_INPUT_TEXT_FIELD_SUBJECT: Locator for searching the 'subject' field.
+    LOCATOR_INPUT_TEXT_FIELD_COMMENTS: Locator for searching the 'comments' field.
+    LOCATOR_SUBMIT_BUTTON: Locator for searching the submit button in the form.
+    
+    LOCATOR_SEARCH_FIELD: Locator for searching the search input field.
+    LOCATOR_SEARCH_BUTTON: Locator for searching the serach button.
+"""
+LOCATOR_INPUT_TEXT_FIELD_NAME = (By.NAME, 'name')
+LOCATOR_INPUT_TEXT_FIELD_EMAIL = (By.NAME, 'email_addr')
+LOCATOR_INPUT_TEXT_FIELD_SUBJECT = (By.NAME, 'subject')
+LOCATOR_INPUT_TEXT_FIELD_COMMENTS = (By.NAME, 'comments')
+LOCATOR_SUBMIT_BUTTON = (By.NAME, 'submit')
+    
+LOCATOR_SEARCH_FIELD = (By.NAME, 'query')
+LOCATOR_SEARCH_BUTTON = (By.XPATH, '//input[@value="Go"]')
+
 class FeedbackPageCls(BasePageCls):
     """
     This class describes the basic methods of working with the feedback page.
@@ -52,7 +74,7 @@ class FeedbackPageCls(BasePageCls):
             Pointer to webelement text field.
         """
         logging.info(f'Executing a input_search_text() method of the FeedbackPage class')
-        locator = TestCaseConstants.LOCATOR_SEARCH_FIELD
+        locator = LOCATOR_SEARCH_FIELD
         input = InputCls()
         input.input_textbox(text,locator)
     
@@ -65,7 +87,7 @@ class FeedbackPageCls(BasePageCls):
             The result of the click.
         """
         logging.info(f'Executing a click_on_the_search_button() method of the FeedbackPage class')
-        locator = TestCaseConstants.LOCATOR_SEARCH_BUTTON
+        locator = LOCATOR_SEARCH_BUTTON
         button = ButtonCls()
         button.click(locator)
     
@@ -78,7 +100,7 @@ class FeedbackPageCls(BasePageCls):
             The result of the clear field.
         """
         logging.info(f'Executing a search_clear() method of the FeedbackPage class')
-        locator = TestCaseConstants.LOCATOR_SEARCH_FIELD
+        locator = LOCATOR_SEARCH_FIELD
         input = InputCls()
         input.clear(locator)
     
@@ -93,7 +115,7 @@ class FeedbackPageCls(BasePageCls):
             Pointer to webelement name.
         """
         logging.info(f'Executing a input_name_text() method of the FeedbackPage class')
-        locator = TestCaseConstants.LOCATOR_INPUT_TEXT_FIELD_NAME
+        locator = LOCATOR_INPUT_TEXT_FIELD_NAME
         input = InputCls()
         input.input_textbox(text,locator)
     
@@ -106,7 +128,7 @@ class FeedbackPageCls(BasePageCls):
             The result of the clear field.
         """
         logging.info(f'Executing a name_clear() method of the FeedbackPage class')
-        locator = TestCaseConstants.LOCATOR_SEARCH_FIELD
+        locator = LOCATOR_SEARCH_FIELD
         input = InputCls()
         input.clear(locator)
 
@@ -121,7 +143,7 @@ class FeedbackPageCls(BasePageCls):
             Pointer to webelement email.
         """
         logging.info(f'Executing a input_email_text() method of the FeedbackPage class')
-        locator = TestCaseConstants.LOCATOR_INPUT_TEXT_FIELD_EMAIL
+        locator = LOCATOR_INPUT_TEXT_FIELD_EMAIL
         input = InputCls()
         input.input_textbox(text,locator)
     
@@ -134,7 +156,7 @@ class FeedbackPageCls(BasePageCls):
             The result of the clear field.
         """
         logging.info(f'Executing a email_clear() method of the FeedbackPage class')
-        locator = TestCaseConstants.LOCATOR_INPUT_TEXT_FIELD_EMAIL
+        locator = LOCATOR_INPUT_TEXT_FIELD_EMAIL
         input = InputCls()
         input.clear(locator)
     
@@ -149,7 +171,7 @@ class FeedbackPageCls(BasePageCls):
             Pointer to webelement subject.
         """
         logging.info(f'Executing a input_subject_text() method of the FeedbackPage class')
-        locator = TestCaseConstants.LOCATOR_INPUT_TEXT_FIELD_SUBJECT
+        locator = LOCATOR_INPUT_TEXT_FIELD_SUBJECT
         input = InputCls()
         input.input_textbox(text,locator)
     
@@ -162,7 +184,7 @@ class FeedbackPageCls(BasePageCls):
             The result of the clear field.
         """
         logging.info(f'Executing a subject_clear() method of the FeedbackPage class')
-        locator = TestCaseConstants.LOCATOR_INPUT_TEXT_FIELD_SUBJECT
+        locator = LOCATOR_INPUT_TEXT_FIELD_SUBJECT
         input = InputCls()
         input.clear(locator)
     
@@ -177,7 +199,7 @@ class FeedbackPageCls(BasePageCls):
             Pointer to webelement comments.
         """
         logging.info(f'Executing a input_comments_text() method of the FeedbackPage class')
-        locator = TestCaseConstants.LOCATOR_INPUT_TEXT_FIELD_COMMENTS
+        locator = LOCATOR_INPUT_TEXT_FIELD_COMMENTS
         input = InputCls()
         input.input_textbox(text,locator)
   
@@ -190,7 +212,7 @@ class FeedbackPageCls(BasePageCls):
             The result of the clear field.
         """
         logging.info(f'Executing a comments_clear() method of the FeedbackPage class')
-        locator = TestCaseConstants.LOCATOR_INPUT_TEXT_FIELD_COMMENTS
+        locator = LOCATOR_INPUT_TEXT_FIELD_COMMENTS
         input = InputCls()
         input.clear(locator)
 
@@ -203,6 +225,6 @@ class FeedbackPageCls(BasePageCls):
             The result of the click.
         """
         logging.info(f'Executing a click_on_the_submit_button() method of the FeedbackPage class')
-        locator = TestCaseConstants.LOCATOR_SUBMIT_BUTTON
+        locator = LOCATOR_SUBMIT_BUTTON
         button = ButtonCls()
         button.click(locator)
