@@ -5,8 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.remote.errorhandler import NoAlertPresentException
-from traitlets import Bool
-from const.constants import TestCaseConstants
+from framework.const.Constants import TestCaseConstants
 
 def init_web_page():
     """
@@ -24,7 +23,7 @@ def init_web_page():
     logging.basicConfig(format='%(asctime)s - INFO - %(message)s', level=logging.INFO)
     return driver
 
-def TC_012() -> Bool:
+def TC_012():
     """
     The function performs a check according to test case #12. 
     Cross-site Script Vulnerability Testing (XSS).    
